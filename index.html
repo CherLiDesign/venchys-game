@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Venchy's Game — Battle for the Alien Planet</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <!-- Floating decorative particles live behind everything -->
+  <div id="starfield" aria-hidden="true"></div>
+
+  <!-- The single stage that all screens are rendered into -->
+  <main id="game" class="game" aria-live="polite"></main>
+
+  <!-- Persistent top-right controls (music + settings) -->
+  <div id="global-controls" class="global-controls">
+    <button id="music-toggle" class="icon-btn" title="Music" aria-label="Toggle music">🎵</button>
+    <button id="sound-toggle" class="icon-btn" title="Sound effects" aria-label="Toggle sound effects">🔊</button>
+  </div>
+
+  <!-- Floating damage numbers / toasts get appended here -->
+  <div id="fx-layer" class="fx-layer" aria-hidden="true"></div>
+
+  <!-- Load order matters: data → systems → screens → boot -->
+  <script src="js/characters.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/story.js"></script>
+  <script src="js/selection.js"></script>
+  <script src="js/battle.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
