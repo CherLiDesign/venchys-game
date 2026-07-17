@@ -34,9 +34,16 @@
   };
   window.Game = Game;
 
+  // Kick off the placeholder background music the first time Home is shown.
+  let musicStarted = false;
+
   /* ---- Home screen --------------------------------------------------------- */
   function renderHome() {
     const { el, mount } = window.UI;
+    if (!musicStarted) {
+      musicStarted = true;
+      if (window.GameAudio.musicOn) window.GameAudio.startMusic();
+    }
 
     // A ring of orbiting creatures around the planet.
     const happy = window.GameData.byForm("happy");
@@ -184,14 +191,9 @@
     document.getElementById("sound-toggle").addEventListener("click", onSfxToggle);
     syncControlButtons();
 
-    // Browsers block audio until the first gesture — kick off music once.
-    const startAudioOnce = () => {
-      if (window.GameAudio.musicOn) window.GameAudio.startMusic();
-      window.removeEventListener("pointerdown", startAudioOnce);
-    };
-    window.addEventListener("pointerdown", startAudioOnce);
-
-    Game.go("home");
+    // Start on the opening cinematic; game music begins when Home appears
+    // (deferred so it never plays over the intro video's own audio).
+    Game.go("intro");
   }
 
   if (document.readyState === "loading") {

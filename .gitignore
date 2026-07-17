@@ -1,3 +1,6 @@
 .claude/
 .DS_Store
 **/.DS_Store
+
+# Huge source video — the web-ready intro.mp4 (compressed) is committed instead.
+*.mov
